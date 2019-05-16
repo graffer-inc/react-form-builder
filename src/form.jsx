@@ -240,6 +240,7 @@ export default class ReactForm extends React.Component {
 
   getSimpleElement(item) {
     const Element = FormElements[item.element];
+    console.log(item);
     return (<Element mutable={true} key={`form_${item.id}`} data={item} />);
   }
 
