@@ -1,129 +1,200 @@
-// FormElements.Header = Header;
-// FormElements.Paragraph = Paragraph;
-// FormElements.Label = Label;
-// FormElements.LineBreak = LineBreak;
-// FormElements.TextInput = TextInput;
-// FormElements.NumberInput = NumberInput;
-// FormElements.TextArea = TextArea;
-// FormElements.Dropdown = Dropdown;
-// FormElements.Signature = Signature;
-// FormElements.Checkboxes = Checkboxes;
-// FormElements.DatePicker = DatePicker;
-// FormElements.RadioButtons = RadioButtons;
-// FormElements.Image = Image;
-// FormElements.Rating = Rating;
-// FormElements.Tags = Tags;
-// FormElements.HyperLink = HyperLink;
-// FormElements.Download = Download;
-// FormElements.Camera = Camera;
-// FormElements.Range = Range;
-
 const itemToJsonSchema = ({basePath, item}) => ({
   $id: `${basePath}/${item.id}`,
-  type: 'string',
-  title: item.field_name,
-  default: '',
-  examples: [],
-  pattern: ''
+  title: item.label,
 });
 
+
+// {
+//   "id":"13A69EB9-012A-4264-9CFF-7DDD2DC4AF6B",
+//   "element":"TextInput",
+//   "text":"Text Input",
+//   "required":true,
+//   "canHaveAnswer":true,
+//   "field_name":"text_input_CFED72FA-169D-430D-89BE-A62A27395082",
+//   "label":"Placeholder Label"
+// }
 const textInputToJsonSchema = ({basePath, item}) => {
   return {
     ...itemToJsonSchema({basePath, item}),
-  }
-};
-
-export const itemsToJsonSchema = (items) => {
-
+    type: 'string',
+  };
 };
 
 
-// const content = [
+// {
+//   "id":"08E1145C-5260-44B9-BB45-8BB4EDC29F87",
+//   "element":"NumberInput",
+//   "text":"Number Input",
+//   "required":true,
+//   "canHaveAnswer":true,
+//   "field_name":"number_input_A457E669-EA1A-4923-A8EE-12175A6C9A19",
+//   "label":"ラベル ",
+//   "pageBreakBefore":false,
+//   "alternateForm":true
+// }
+const numberInputToJsonSchema = ({basePath, item}) => ({
+  ...itemToJsonSchema({basePath, item}),
+  type: 'number',
+});
+
+// {
+//   "id":"ED9706D5-DA70-4924-8C77-A5016340BE90",
+//   "element":"TextArea",
+//   "text":"Multi-line Input",
+//   "required":false,
+//   "canHaveAnswer":true,
+//   "field_name":"text_area_CA93A764-8A00-4268-9C4F-395897099A2E",
+//   "label":"Placeholder Label"
+// }
+const textAreaToJsonSchema = ({basePath, item}) => ({
+  ...itemToJsonSchema({basePath, item}),
+  type: 'string',
+});
+
+
+// {
+//   "id":"2745CAF2-F2B2-4B00-BA1F-FBD8F8C27808",
+//   "element":"Dropdown",
+//   "text":"Dropdown",
+//   "required":false,
+//   "canHaveAnswer":true,
+//   "field_name":"dropdown_D9316A4D-DE8D-4CD7-B147-54A68BE6E410",
+//   "label":"Placeholder Label",
+//   "options":[
 //   {
-//     id: '3A06600E-D7E1-44FD-AA0C-BFB8AB61B9F1',
-//     element: 'Dropdown',
-//     text: 'Dropdown',
-//     required: false,
-//     canHaveAnswer: true,
-//     field_name: 'dropdown_38716F53-51AA-4A53-9A9B-367603D82548',
-//     label: '<div>Dropdown</div>\n',
-//     options: [
-//       {
-//         value: 'd1',
-//         text: '1',
-//         key: 'dropdown_option_39F17D90-322B-4E23-8CD6-4D7AD58C4DD0',
-//       },
-//       {
-//         value: 'd2',
-//         text: '2',
-//         key: 'dropdown_option_C3BB35B7-6335-4704-BD03-1228D7C33EAE',
-//       },
-//       {
-//         value: 'd3',
-//         text: '3',
-//         key: 'dropdown_option_31C5C3A9-59B3-4CD5-B997-3754C6B05353',
-//       },
-//     ],
+//     "value":"place_holder_option_1",
+//     "text":"Place holder option 1",
+//     "key":"dropdown_option_1A3DB201-D21B-49BA-95D0-6E527929E577"
 //   },
 //   {
-//     id: '7C8F465D-C09C-42CF-8563-EEF26635382F',
-//     element: 'Checkboxes',
-//     text: 'Checkboxes',
-//     required: false,
-//     canHaveAnswer: true,
-//     field_name: 'checkboxes_8D6BDC45-76A3-4157-9D62-94B6B24BB833',
-//     label: '<div>check box</div>\n',
-//     options: [
-//       {
-//         value: 'c1',
-//         text: '1',
-//         key: 'checkboxes_option_8657F4A6-AA5A-41E2-A44A-3E4F43BFC4A6',
-//       },
-//       {
-//         value: 'c2',
-//         text: '2',
-//         key: 'checkboxes_option_1D674F07-9E9F-4143-9D9C-D002B29BA9E4',
-//       },
-//       {
-//         value: 'c3',
-//         text: '3',
-//         key: 'checkboxes_option_6D097591-E445-4BB4-8474-03BFDAA06BFC',
-//       },
-//     ],
+//     "value":"place_holder_option_2",
+//     "text":"Place holder option 2",
+//     "key":"dropdown_option_4975B50E-D7E3-4C09-83CE-EDB135AA7DFC"
 //   },
 //   {
-//     id: '850B1CE9-E8D8-47CA-A770-25496EECC000',
-//     element: 'RadioButtons',
-//     text: 'Multiple Choice',
-//     required: false,
-//     canHaveAnswer: true,
-//     field_name: 'radio_buttons_F79ACC6B-7EBA-429E-870C-124F4F0DA90B',
-//     label: '<div>radio</div>\n',
-//     options: [
-//       {
-//         value: 'r1',
-//         text: '1',
-//         key: 'radiobuttons_option_D3277CC8-FDB2-4CEB-AE83-C126492062B6',
-//       },
-//       {
-//         value: 'r2',
-//         text: '2',
-//         key: 'radiobuttons_option_553B2710-AD7C-46B4-9F47-B2BD5942E0C7',
-//       },
-//       {
-//         value: 'r3',
-//         text: '3',
-//         key: 'radiobuttons_option_08175D04-FF32-4FFB-9210-630AA155573E',
-//       },
-//     ],
+//     "value":"place_holder_option_3",
+//     "text":"Place holder option 3",
+//     "key":"dropdown_option_28C3E7C7-5F6D-48AB-ABBE-DCAC4EBFDC3C"
+//   }
+// ]
+// }
+const dropdownToJsonSchema = ({basePath, item}) => ({
+  ...itemToJsonSchema({basePath, item}),
+  type: 'string',
+  enum: item.options.map(opt => opt.value)
+});
+
+
+// const signatureToJsonSchema = ({basePath, item}) => ({
+//   ...itemToJsonSchema({basePath, item}),
+//   type: 'string',
+//   enum: item.options.map(opt => opt.value)
+// });
+
+// {
+//   "id":"D4E77A75-D7CC-41B0-965E-76AF8F2A6784",
+//   "element":"Checkboxes",
+//   "text":"Checkboxes",
+//   "required":false,
+//   "canHaveAnswer":true,
+//   "field_name":"checkboxes_B7EA1C39-C637-47F3-91D6-6674752BA5E2",
+//   "label":"Placeholder Label",
+//   "options":[
+//   {
+//     "value":"place_holder_option_1",
+//     "text":"Place holder option 1",
+//     "key":"checkboxes_option_D1C40FB9-1819-4875-9092-42DF8FDEB9D5"
 //   },
 //   {
-//     id: '34611241-27CF-4D0A-9B8D-6F84024D6876',
-//     element: 'Rating',
-//     text: 'Rating',
-//     required: false,
-//     canHaveAnswer: true,
-//     field_name: 'rating_3B3491B3-71AC-4A68-AB8C-A2B5009346CB',
-//     label: '<div>star</div>\n',
+//     "value":"place_holder_option_2",
+//     "text":"Place holder option 2",
+//     "key":"checkboxes_option_F0A1DA96-B7B4-4097-A36A-3527296C8FCA"
 //   },
-// ];
+//   {
+//     "value":"place_holder_option_3",
+//     "text":"Place holder option 3",
+//     "key":"checkboxes_option_509E040A-D529-4310-A4A5-384E226B49F5"
+//   }
+// ]
+// }
+const checkboxesToJsonSchema = ({basePath, item}) => ({
+  ...itemToJsonSchema({basePath, item}),
+  type: 'array',
+  items: {
+    type: 'string',
+    enum: item.options.map(opt => opt.value)
+  },
+  uniqueItems: true,
+  minItems: 1,
+});
+
+// const datePickerToJsonSchema = ({basePath, item}) => ({
+//   ...itemToJsonSchema({basePath, item}),
+//   type: 'array',
+//   items: {
+//     type: 'string',
+//     enum: item.options.map(opt => opt.value)
+//   },
+//   uniqueItems: true,
+//   minItems: 1,
+// });
+
+
+// {
+//   "id":"72300191-ADCF-4321-BA2B-EC10AD876158",
+//   "element":"RadioButtons",
+//   "text":"Multiple Choice",
+//   "required":false,
+//   "canHaveAnswer":true,
+//   "field_name":"radiobuttons_BCF59E70-0E83-4DA6-ACDB-78DF86DD0B4B",
+//   "label":"Placeholder Label",
+//   "options":[
+//   {
+//     "value":"place_holder_option_1",
+//     "text":"Place holder option 1",
+//     "key":"radiobuttons_option_E440B02E-E136-4686-8A03-0F882DC2ECEC"
+//   },
+//   {
+//     "value":"place_holder_option_2",
+//     "text":"Place holder option 2",
+//     "key":"radiobuttons_option_FC268138-7ABB-4ED8-8331-BC4EAB741B1E"
+//   },
+//   {
+//     "value":"place_holder_option_3",
+//     "text":"Place holder option 3",
+//     "key":"radiobuttons_option_98D6209D-37C6-418D-8905-F1D23E457562"
+//   }
+// ]
+// }
+const radioButtonsToJsonSchema = ({basePath, item}) => ({
+  ...itemToJsonSchema({basePath, item}),
+  type: 'string',
+  enum: item.options.map(opt => opt.value)
+});
+
+
+const converter = {
+  // Header: ,
+  // Paragraph: ,
+  // Label: ,
+  // LineBreak: ,
+  TextInput: textInputToJsonSchema,
+  NumberInput: numberInputToJsonSchema,
+  TextArea: textAreaToJsonSchema,
+  Dropdown: dropdownToJsonSchema,
+  // Signature: ,
+  Checkboxes: checkboxesToJsonSchema,
+  // DatePicker,
+  RadioButtons: radioButtonsToJsonSchema,
+  // Image,
+  // Rating,
+  // Tags,
+  // HyperLink,
+  // Download,
+  // Camera,
+  // Range,
+};
+
+const itemsToJsonSchema = (items) => {
+
+};
