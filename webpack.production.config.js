@@ -32,7 +32,10 @@ module.exports = {
   module: {
     rules: [
       {
-        exclude: /node_modules/,
+        exclude: {
+          include: /node_modules/,
+          exclude: /node_modules\/beedle\//,
+        },
         test: /\.js|.jsx?$/,
         use: [
           { loader: 'babel-loader' }
