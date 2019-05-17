@@ -311,3 +311,59 @@ test('convert radioButtons to json schema', () => {
   expect(jsonSchema).toStrictEqual(expected);
   expect(ajv.validateSchema(jsonSchema)).toBe(true);
 });
+
+
+test('convert tags to json schema', () => {
+  const input = [
+    {
+      id: '164C60BB-54EA-4EBF-88D1-BC8B152694EA',
+      element: 'Tags',
+      text: 'タグ',
+      required: false,
+      canHaveAnswer: true,
+      field_name: 'tags_BD6FF6A1-A3D5-48DC-A381-8280C2CADB50',
+      label: 'ラベル',
+      options: [
+        {
+          value: 'place_holder_tag_1',
+          text: 'Place holder tag 1',
+          key: 'tags_option_E9B947AF-98E6-4078-AB6D-BEB9F2F55A6E',
+          label: 'Place holder tag 1',
+        },
+        {
+          value: 'place_holder_tag_2',
+          text: 'Place holder tag 2',
+          key: 'tags_option_BC55713D-05D8-4C7C-9E2D-D366CDB78225',
+          label: 'Place holder tag 2',
+        },
+        {
+          value: 'place_holder_tag_3',
+          text: 'Place holder tag 3',
+          key: 'tags_option_5AE0C6C4-03AB-4FEC-82B0-62B672F82B8B',
+          label: 'Place holder tag 3',
+        },
+      ],
+    },
+  ];
+
+  const expected = {
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    $id: 'http://example.com/root.json',
+    type: 'object',
+    required: [],
+    properties:
+      {
+        '164C60BB-54EA-4EBF-88D1-BC8B152694EA':
+          {
+            $id: '#/properties/164C60BB-54EA-4EBF-88D1-BC8B152694EA',
+            title: 'ラベル',
+            type: 'string',
+            enum: ['place_holder_tag_1', 'place_holder_tag_2', 'place_holder_tag_3'],
+          },
+      },
+  };
+
+  const jsonSchema = itemsToJsonSchema(input);
+  expect(jsonSchema).toStrictEqual(expected);
+  expect(ajv.validateSchema(jsonSchema)).toBe(true);
+});
