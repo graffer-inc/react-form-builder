@@ -150,7 +150,118 @@ test('convert dropdown to json schema', () => {
             $id: '#/properties/2745CAF2-F2B2-4B00-BA1F-FBD8F8C27808',
             title: 'Placeholder Label',
             type: 'string',
-            enums: ['place_holder_option_1', 'place_holder_option_2', 'place_holder_option_3'],
+            enum: ['place_holder_option_1', 'place_holder_option_2', 'place_holder_option_3'],
+          },
+      },
+  };
+
+  const jsonSchema = itemsToJsonSchema(input);
+  expect(jsonSchema).toStrictEqual(expected);
+  expect(ajv.validateSchema(jsonSchema)).toBe(true);
+});
+
+
+test('convert checkboxes to json schema', () => {
+  const input = [
+    {
+      id: 'D4E77A75-D7CC-41B0-965E-76AF8F2A6784',
+      element: 'Checkboxes',
+      text: 'Checkboxes',
+      required: false,
+      canHaveAnswer: true,
+      field_name: 'checkboxes_B7EA1C39-C637-47F3-91D6-6674752BA5E2',
+      label: 'Placeholder Label',
+      options: [
+        {
+          value: 'place_holder_option_1',
+          text: 'Place holder option 1',
+          key: 'checkboxes_option_D1C40FB9-1819-4875-9092-42DF8FDEB9D5',
+        },
+        {
+          value: 'place_holder_option_2',
+          text: 'Place holder option 2',
+          key: 'checkboxes_option_F0A1DA96-B7B4-4097-A36A-3527296C8FCA',
+        },
+        {
+          value: 'place_holder_option_3',
+          text: 'Place holder option 3',
+          key: 'checkboxes_option_509E040A-D529-4310-A4A5-384E226B49F5',
+        },
+      ],
+    },
+  ];
+
+  const expected = {
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    $id: 'http://example.com/root.json',
+    type: 'object',
+    required: [],
+    properties:
+      {
+        'D4E77A75-D7CC-41B0-965E-76AF8F2A6784':
+          {
+            $id: '#/properties/D4E77A75-D7CC-41B0-965E-76AF8F2A6784',
+            title: 'Placeholder Label',
+            type: 'array',
+            uniqueItems: true,
+            minItems: 1,
+            items: {
+              type: 'string',
+              enum: ['place_holder_option_1', 'place_holder_option_2', 'place_holder_option_3']
+            },
+          },
+      },
+  };
+
+  const jsonSchema = itemsToJsonSchema(input);
+  expect(jsonSchema).toStrictEqual(expected);
+  expect(ajv.validateSchema(jsonSchema)).toBe(true);
+});
+
+
+test('convert radioButtons to json schema', () => {
+  const input = [
+    {
+      id: '72300191-ADCF-4321-BA2B-EC10AD876158',
+      element: 'RadioButtons',
+      text: 'Multiple Choice',
+      required: false,
+      canHaveAnswer: true,
+      field_name: 'radiobuttons_BCF59E70-0E83-4DA6-ACDB-78DF86DD0B4B',
+      label: 'Placeholder Label',
+      options: [
+        {
+          value: 'place_holder_option_1',
+          text: 'Place holder option 1',
+          key: 'radiobuttons_option_E440B02E-E136-4686-8A03-0F882DC2ECEC',
+        },
+        {
+          value: 'place_holder_option_2',
+          text: 'Place holder option 2',
+          key: 'radiobuttons_option_FC268138-7ABB-4ED8-8331-BC4EAB741B1E',
+        },
+        {
+          value: 'place_holder_option_3',
+          text: 'Place holder option 3',
+          key: 'radiobuttons_option_98D6209D-37C6-418D-8905-F1D23E457562',
+        },
+      ],
+    },
+  ];
+
+  const expected = {
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    $id: 'http://example.com/root.json',
+    type: 'object',
+    required: [],
+    properties:
+      {
+        '72300191-ADCF-4321-BA2B-EC10AD876158':
+          {
+            $id: '#/properties/72300191-ADCF-4321-BA2B-EC10AD876158',
+            title: 'Placeholder Label',
+            type: 'string',
+            enum: ['place_holder_option_1', 'place_holder_option_2', 'place_holder_option_3'],
           },
       },
   };
