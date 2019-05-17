@@ -1,4 +1,7 @@
+import Ajv from 'ajv';
 import { itemsToJsonSchema } from './form-to-jsonschema';
+
+const ajv = new Ajv();
 
 test('convert textInput to json schema', () => {
   const input = [
@@ -28,7 +31,9 @@ test('convert textInput to json schema', () => {
       },
   };
 
-  expect(itemsToJsonSchema(input)).toStrictEqual(expected);
+  const jsonSchema = itemsToJsonSchema(input);
+  expect(jsonSchema).toStrictEqual(expected);
+  expect(ajv.validateSchema(jsonSchema)).toBe(true);
 });
 
 
