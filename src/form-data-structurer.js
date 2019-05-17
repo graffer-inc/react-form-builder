@@ -1,7 +1,7 @@
 
 const formDataToStructuredData = (formData) => {
   const data = {};
-  formData.each(f => {
+  formData.forEach(f => {
     data[f.id] = f.value;
   });
   return data;
@@ -15,4 +15,4 @@ const dataStructurer = {
   formDataToStructuredData
 }
 
-export default dataStructurer
+export default dataStructurer;
