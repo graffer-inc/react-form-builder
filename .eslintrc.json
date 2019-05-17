@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb-base"],
+  "extends": ["airbnb-base", "plugin:jest/recommended"],
   "plugins": [
     "react"
   ],
@@ -21,8 +21,8 @@
     "no-underscore-dangle": "off",
     "class-methods-use-this": "off",
     "arrow-parens": "off",
-    "no-plusplus": "off",   
-    "no-return-assign": "off", 
+    "no-plusplus": "off",
+    "no-return-assign": "off",
     "no-prototype-builtins": "warn",
     "react/jsx-uses-vars": [2],
     "react/jsx-uses-react": 1
