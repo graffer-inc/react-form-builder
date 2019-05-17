@@ -68,5 +68,7 @@ test('convert numberInput to json schema', () => {
       },
   };
 
-  expect(itemsToJsonSchema(input)).toStrictEqual(expected);
+  const jsonSchema = itemsToJsonSchema(input);
+  expect(jsonSchema).toStrictEqual(expected);
+  expect(ajv.validateSchema(jsonSchema)).toBe(true);
 });
