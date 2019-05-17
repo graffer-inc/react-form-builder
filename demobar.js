@@ -65,7 +65,7 @@ export default class Demobar extends React.Component {
 
   // eslint-disable-next-line no-unused-vars
   _onSubmit(data) {
-    // console.log('onSubmit', data);
+    console.log('onSubmit', data);
     // Place code to post json data to server here
   }
 
@@ -104,9 +104,10 @@ export default class Demobar extends React.Component {
                   action_name="Save"
                   form_action="/api/form"
                   form_method="POST"
-                  // onSubmit={this._onSubmit}
+                  onSubmit={this._onSubmit}
                   variables={this.props.variables}
-                  data={this.state.data} />
+                  data={this.state.data}
+                />
 
                 <div className="modal-footer">
                   <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.closePreview.bind(this)}>Close</button>
@@ -131,7 +132,11 @@ export default class Demobar extends React.Component {
                   read_only={true}
                   variables={this.props.variables}
                   hide_actions={true}
-                  data={this.state.data} />
+                  data={this.state.data}
+                  onSubmit={(data) => {
+                    console.log(data);
+                  }}
+                />
 
                 <div className="modal-footer">
                   <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.closePreview.bind(this)}>Close</button>
@@ -154,7 +159,11 @@ export default class Demobar extends React.Component {
                   data={this.state.data}
                   display_short={true}
                   variables={this.props.variables}
-                  hide_actions={false} />
+                  hide_actions={false}
+                  onSubmit={(data) => {
+                    console.log(data);
+                  }}
+                />
 
                 <div className="modal-footer">
                   <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.closePreview.bind(this)}>Close</button>

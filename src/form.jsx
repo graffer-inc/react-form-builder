@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 import { EventEmitter } from 'fbemitter';
 import FormValidator from './form-validator';
 import FormElements from './form-elements';
+import dataStructurer from './form-data-structurer';
 
 const {
   Image, Checkboxes, Signature, Download, Camera,
@@ -137,7 +138,7 @@ export default class ReactForm extends React.Component {
   }
 
   _collect(item) {
-    const itemData = { name: item.field_name };
+    const itemData = { id: item.id, name: item.field_name };
     const ref = this.inputs[item.field_name];
     if (item.element === 'Checkboxes' || item.element === 'RadioButtons') {
       const checked_options = [];
@@ -193,7 +194,7 @@ export default class ReactForm extends React.Component {
       const { onSubmit } = this.props;
       if (onSubmit) {
         const data = this._collectFormData(this.props.data);
-        onSubmit(data);
+        onSubmit({ data, structuredData: dataStructurer.formDataToStructuredData(data) });
       } else {
         const $form = ReactDOM.findDOMNode(this.form);
         $form.submit();
