@@ -113,8 +113,10 @@ const onPost = function(data) {
   // post(saveUrl, data);
 }
 
+console.log(variables);
+
 ReactDOM.render(
-  <FormBuilder.ReactFormBuilder variables={variables}
+  <FormBuilder.ReactFormBuilder
                                 // onLoad={onLoad}
                                 onPost={onPost}
                                 // saveUrl={saveUrl}
@@ -123,6 +125,6 @@ ReactDOM.render(
 )
 
 ReactDOM.render(
-  <DemoBar variables={variables}/>,
+  <DemoBar />,
   document.getElementById('demo-bar'),
 );
