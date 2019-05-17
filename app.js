@@ -4,9 +4,9 @@ import 'proxy-polyfill/proxy.min';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DemoBar from './demobar';
-// import FormBuilder from './src/index';
-// import * as variables from './variables';
-// import { get, post} from './src/stores/requests';
+import FormBuilder from './src/index';
+import * as variables from './variables';
+// import {get, post} from './src/stores/requests';
 // Add our stylesheets for the demo.
 require('./scss/application.scss');
 
@@ -103,39 +103,26 @@ require('./scss/application.scss');
 //   },
 // ];
 
-// const onLoad = function() {
-//   console.log('onLoad');
-//   return get(url);
-// }
+const onLoad = function() {
+  console.log('onLoad');
+  // return get(url);
+}
 
-// const onPost = function(data) {
-//   console.log('onPost', data);
-//   post(saveUrl, data);
-// }
-
-// {/*<FormBuilder.ReactFormBuilder variables={variables}*/}
-// {/*url={url}*/}
-// {/*// onLoad={console.log}*/}
-// {/*onPost={console.log}*/}
-// {/*saveUrl={saveUrl}*/}
-// />,
+const onPost = function(data) {
+  console.log('onPost', data);
+  // post(saveUrl, data);
+}
 
 ReactDOM.render(
-  <p>
-    ほげほげ
-  </p>,
-  document.getElementById('form-builder'),
-);
+  <FormBuilder.ReactFormBuilder variables={variables}
+                                // onLoad={onLoad}
+                                onPost={onPost}
+                                // saveUrl={saveUrl}
+  />,
+  document.getElementById('form-builder')
+)
 
-// ReactDOM.render(
-//   <FormBuilder.ReactFormBuilder variables={variables}
-//     onLoad={onLoad}
-//     onPost={onPost}
-//   />,
-//   document.getElementById('form-builder')
-// )
-//
-// ReactDOM.render(
-//   <DemoBar variables={variables}/>,
-//   document.getElementById('demo-bar'),
-// );
+ReactDOM.render(
+  <DemoBar variables={variables}/>,
+  document.getElementById('demo-bar'),
+);
