@@ -35,7 +35,7 @@ const ComponentLabel = (props) => {
   return (
     <label className={props.className || ''}>
       <span dangerouslySetInnerHTML={{ __html: myxss.process(props.data.label) }}/>
-      {hasRequiredLabel && <span className="label-required label label-danger">Required</span>}
+      {hasRequiredLabel && <span className="label-required">*</span>}
     </label>
   );
 };
