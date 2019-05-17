@@ -103,10 +103,10 @@ require('./scss/application.scss');
 //   },
 // ];
 
-const onLoad = function() {
-  console.log('onLoad');
-  // return get(url);
-}
+// const onLoad = function() {
+//   console.log('onLoad');
+//   // return get(url);
+// }
 
 const onPost = function(data) {
   console.log('onPost', data);
