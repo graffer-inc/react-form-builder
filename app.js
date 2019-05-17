@@ -112,8 +112,10 @@ const saveUrl = '/api/formdata';
 
 ReactDOM.render(
   <FormBuilder.ReactFormBuilder variables={variables}
-    url={url}
-    saveUrl={saveUrl}
+                                url={url}
+                                // onLoad={console.log}
+                                onPost={console.log}
+                                saveUrl={saveUrl}
   />,
   document.getElementById('form-builder'),
 );
@@ -127,6 +129,6 @@ ReactDOM.render(
 // )
 //
 ReactDOM.render(
-  <DemoBar variables={variables} />,
+  <DemoBar variables={variables}/>,
   document.getElementById('demo-bar'),
 );
