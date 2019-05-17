@@ -194,7 +194,7 @@ export default class ReactForm extends React.Component {
       const { onSubmit } = this.props;
       if (onSubmit) {
         const data = this._collectFormData(this.props.data);
-        onSubmit({ data, structuredData: dataStructurer.formDataToStructuredData(data) });
+        onSubmit(data);
       } else {
         const $form = ReactDOM.findDOMNode(this.form);
         $form.submit();

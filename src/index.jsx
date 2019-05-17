@@ -9,6 +9,8 @@ import Preview from './preview';
 import Toolbar from './toolbar';
 import ReactFormGenerator from './form';
 import store from './stores/store';
+import itemsToJsonSchema from './form-to-jsonschema';
+import dataStructurer from "./form-data-structurer";
 
 class ReactFormBuilder extends React.Component {
   constructor(props) {
@@ -77,7 +79,30 @@ class ReactFormBuilder extends React.Component {
 const FormBuilders = {};
 
 FormBuilders.ReactFormBuilder = DragDropContext(HTML5Backend)(ReactFormBuilder);
+FormBuilders.FormBuilder = ({ onPost, ...props }) => (
+  <FormBuilders.ReactFormBuilder
+    onPost={(data) => {
+      onPost({
+        formData: data,
+        documentSchema: itemsToJsonSchema(data),
+      });
+    }}
+    {...props}
+  />
+);
 FormBuilders.ReactFormGenerator = ReactFormGenerator;
+FormBuilders.FormGenerator = ({ onSubmit, ...props }) => (
+  <FormBuilders.ReactFormBuilder
+    onSubmit={(data) => {
+      onSubmit({
+        formData: data,
+        structuredData: dataStructurer.formDataToStructuredData(data),
+      });
+    }}
+    {...props}
+  />
+);
+
 FormBuilders.ElementStore = store;
 
 export default FormBuilders;
