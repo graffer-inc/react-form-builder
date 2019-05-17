@@ -72,3 +72,38 @@ test('convert numberInput to json schema', () => {
   expect(jsonSchema).toStrictEqual(expected);
   expect(ajv.validateSchema(jsonSchema)).toBe(true);
 });
+
+
+test('convert textArea to json schema', () => {
+  const input = [
+    {
+      id: 'ED9706D5-DA70-4924-8C77-A5016340BE90',
+      element: 'TextArea',
+      text: 'Multi-line Input',
+      required: false,
+      canHaveAnswer: true,
+      field_name: 'text_area_CA93A764-8A00-4268-9C4F-395897099A2E',
+      label: 'Placeholder Label',
+    },
+  ];
+
+  const expected = {
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    $id: 'http://example.com/root.json',
+    type: 'object',
+    required: [],
+    properties:
+      {
+        'ED9706D5-DA70-4924-8C77-A5016340BE90':
+          {
+            $id: '#/properties/ED9706D5-DA70-4924-8C77-A5016340BE90',
+            title: 'Placeholder Label',
+            type: 'string',
+          },
+      },
+  };
+
+  const jsonSchema = itemsToJsonSchema(input);
+  expect(jsonSchema).toStrictEqual(expected);
+  expect(ajv.validateSchema(jsonSchema)).toBe(true);
+});
