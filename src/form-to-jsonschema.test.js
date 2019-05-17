@@ -204,7 +204,7 @@ test('convert checkboxes to json schema', () => {
             title: 'Placeholder Label',
             type: 'array',
             uniqueItems: true,
-            minItems: 1,
+            minItems: 0,
             items: {
               type: 'string',
               enum: ['place_holder_option_1', 'place_holder_option_2', 'place_holder_option_3'],
@@ -218,6 +218,63 @@ test('convert checkboxes to json schema', () => {
   expect(ajv.validateSchema(jsonSchema)).toBe(true);
 });
 
+
+test('convert checkboxes required to json schema', () => {
+  const input = [
+    {
+      id: 'D4E77A75-D7CC-41B0-965E-76AF8F2A6784',
+      element: 'Checkboxes',
+      text: 'Checkboxes',
+      required: true,
+      canHaveAnswer: true,
+      field_name: 'checkboxes_B7EA1C39-C637-47F3-91D6-6674752BA5E2',
+      label: 'Placeholder Label',
+      options: [
+        {
+          value: 'place_holder_option_1',
+          text: 'Place holder option 1',
+          key: 'checkboxes_option_D1C40FB9-1819-4875-9092-42DF8FDEB9D5',
+        },
+        {
+          value: 'place_holder_option_2',
+          text: 'Place holder option 2',
+          key: 'checkboxes_option_F0A1DA96-B7B4-4097-A36A-3527296C8FCA',
+        },
+        {
+          value: 'place_holder_option_3',
+          text: 'Place holder option 3',
+          key: 'checkboxes_option_509E040A-D529-4310-A4A5-384E226B49F5',
+        },
+      ],
+    },
+  ];
+
+  const expected = {
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    $id: 'http://example.com/root.json',
+    type: 'object',
+    required: ['D4E77A75-D7CC-41B0-965E-76AF8F2A6784'],
+    properties:
+      {
+        'D4E77A75-D7CC-41B0-965E-76AF8F2A6784':
+          {
+            $id: '#/properties/D4E77A75-D7CC-41B0-965E-76AF8F2A6784',
+            title: 'Placeholder Label',
+            type: 'array',
+            uniqueItems: true,
+            minItems: 1,
+            items: {
+              type: 'string',
+              enum: ['place_holder_option_1', 'place_holder_option_2', 'place_holder_option_3'],
+            },
+          },
+      },
+  };
+
+  const jsonSchema = itemsToJsonSchema(input);
+  expect(jsonSchema).toStrictEqual(expected);
+  expect(ajv.validateSchema(jsonSchema)).toBe(true);
+});
 
 test('convert datePicker to json schema', () => {
   const input = [

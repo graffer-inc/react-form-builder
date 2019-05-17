@@ -123,7 +123,7 @@ const checkboxesToJsonSchema = ({ basePath, item }) => ({
     enum: item.options.map(opt => opt.value),
   },
   uniqueItems: true,
-  minItems: 1,
+  minItems: item.required ? 1 : 0,
 });
 
 
