@@ -79,6 +79,8 @@ class ReactFormBuilder extends React.Component {
 const FormBuilders = {};
 
 FormBuilders.ReactFormBuilder = DragDropContext(HTML5Backend)(ReactFormBuilder);
+
+// Wrapper Component to adapt config data to the graffer platform.
 FormBuilders.FormBuilder = ({ onPost, ...props }) => (
   <FormBuilders.ReactFormBuilder
     onPost={(data) => {
@@ -91,6 +93,7 @@ FormBuilders.FormBuilder = ({ onPost, ...props }) => (
   />
 );
 FormBuilders.ReactFormGenerator = ReactFormGenerator;
+// Wrapper Component to adapt config data to the graffer template platform.
 FormBuilders.FormGenerator = ({ onSubmit, ...props }) => (
   <FormBuilders.ReactFormBuilder
     onSubmit={(data) => {
