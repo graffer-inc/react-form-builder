@@ -193,7 +193,7 @@ const converter = {
   // Range,
 };
 
-export const itemsToJsonSchema = (items) => {
+const itemsToJsonSchema = (items) => {
   const properties = {};
   const required = [];
   items.forEach(i => {
@@ -211,3 +211,5 @@ export const itemsToJsonSchema = (items) => {
     properties,
   };
 };
+
+export default itemToJsonSchema;
