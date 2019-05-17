@@ -126,16 +126,26 @@ const checkboxesToJsonSchema = ({ basePath, item }) => ({
   minItems: 1,
 });
 
-// const datePickerToJsonSchema = ({basePath, item}) => ({
-//   ...itemToJsonSchema({basePath, item}),
-//   type: 'array',
-//   items: {
-//     type: 'string',
-//     enum: item.options.map(opt => opt.value)
-//   },
-//   uniqueItems: true,
-//   minItems: 1,
-// });
+
+// {
+//   "id":"A32F34DB-99CC-4E12-A490-556457AA34C7",
+//   "element":"DatePicker",
+//   "text":"日付",
+//   "required":false,
+//   "readOnly":false,
+//   "defaultToday":false,
+//   "dateFormat":"yyyy-MM-dd",
+//   "timeFormat":"hh:mm aa",
+//   "showTimeSelect":false,
+//   "showTimeSelectOnly":false,
+//   "field_name":"date_picker_8E6555AA-65FF-4E82-8445-55D4C8E7A36C",
+//   "label":"Placeholder Label"
+// }
+const datePickerToJsonSchema = ({ basePath, item }) => ({
+  ...itemToJsonSchema({ basePath, item }),
+  type: 'string',
+  format: 'date',
+});
 
 
 // {
@@ -182,7 +192,7 @@ const converter = {
   Dropdown: dropdownToJsonSchema,
   // Signature: ,
   Checkboxes: checkboxesToJsonSchema,
-  // DatePicker,
+  DatePicker: datePickerToJsonSchema,
   RadioButtons: radioButtonsToJsonSchema,
   // Image,
   // Rating,
@@ -212,4 +222,4 @@ const itemsToJsonSchema = (items) => {
   };
 };
 
-export default itemToJsonSchema;
+export default itemsToJsonSchema;

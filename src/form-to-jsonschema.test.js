@@ -1,5 +1,5 @@
 import Ajv from 'ajv';
-import {itemsToJsonSchema} from './form-to-jsonschema';
+import itemsToJsonSchema from './form-to-jsonschema';
 
 const ajv = new Ajv();
 
@@ -207,8 +207,49 @@ test('convert checkboxes to json schema', () => {
             minItems: 1,
             items: {
               type: 'string',
-              enum: ['place_holder_option_1', 'place_holder_option_2', 'place_holder_option_3']
+              enum: ['place_holder_option_1', 'place_holder_option_2', 'place_holder_option_3'],
             },
+          },
+      },
+  };
+
+  const jsonSchema = itemsToJsonSchema(input);
+  expect(jsonSchema).toStrictEqual(expected);
+  expect(ajv.validateSchema(jsonSchema)).toBe(true);
+});
+
+
+test('convert datePicker to json schema', () => {
+  const input = [
+    {
+      id: 'A32F34DB-99CC-4E12-A490-556457AA34C7',
+      element: 'DatePicker',
+      text: '日付',
+      required: false,
+      readOnly: false,
+      defaultToday: false,
+      dateFormat: 'yyyy-MM-dd',
+      timeFormat: 'hh:mm aa',
+      showTimeSelect: false,
+      showTimeSelectOnly: false,
+      field_name: 'date_picker_8E6555AA-65FF-4E82-8445-55D4C8E7A36C',
+      label: 'Placeholder Label',
+    },
+  ];
+
+  const expected = {
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    $id: 'http://example.com/root.json',
+    type: 'object',
+    required: [],
+    properties:
+      {
+        'A32F34DB-99CC-4E12-A490-556457AA34C7':
+          {
+            $id: '#/properties/A32F34DB-99CC-4E12-A490-556457AA34C7',
+            title: 'Placeholder Label',
+            type: 'string',
+            format: 'date',
           },
       },
   };
