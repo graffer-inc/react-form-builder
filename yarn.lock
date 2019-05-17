@@ -1681,11 +1681,6 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-beedle@^0.6.8:
-  version "0.6.9"
-  resolved "https://registry.yarnpkg.com/beedle/-/beedle-0.6.9.tgz#4fcbd2f4ae8d252f6cfb53173ff58752a60e0407"
-  integrity sha512-h9TR46UuL/IruVfvpy00VJjF4OEx9/vFBqFO/1CffkzW+miRxOHNy0+WOJSTvzYPYTzHAlBJuyWmWLbz3xVU4g==
-
 big.js@^5.2.2:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/big.js/-/big.js-5.2.2.tgz#65f0af382f578bcdc742bd9c281e9cb2d7768328"
@@ -1740,11 +1735,6 @@ bonjour@^3.5.0:
     dns-txt "^2.0.2"
     multicast-dns "^6.0.1"
     multicast-dns-service-types "^1.1.0"
-
-bootstrap-slider@^10.6.1:
-  version "10.6.1"
-  resolved "https://registry.yarnpkg.com/bootstrap-slider/-/bootstrap-slider-10.6.1.tgz#d9e4b1c327fa4eafc34a52ec01fc4e58b5266889"
-  integrity sha512-lA6SwGr33YcKHtpt0lYjwspc4RCgM2bdrFdHU1U77Lal6gZGjVF/Ii9/Mff0b1dyZ4RvSAzaOlSsuY1d5wCtdA==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -7043,13 +7033,6 @@ react-addons-test-utils@^0.14.2:
   version "0.14.8"
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-0.14.8.tgz#dcddc039e71fc3c81d80338e53a3714f14d41e1f"
   integrity sha1-3N3AOecfw8gdgDOOU6NxTxTUHh8=
-
-react-bootstrap-slider@2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/react-bootstrap-slider/-/react-bootstrap-slider-2.2.2.tgz#e56bd570fa16b19661762022dd76419a0ef7d726"
-  integrity sha512-4j69ruXFiOCRL97+eO3otgIeHmBaNPelf2wgK6UljjD8EfpLL3yOmLHulWogEQFeXHm0i2wr42qXdTyKClYoKA==
-  dependencies:
-    bootstrap-slider "^10.6.1"
 
 react-datepicker@^2.4.0:
   version "2.5.0"

@@ -1,3 +1,5 @@
+// This is a DEAD COPY of Beedle https://github.com/andybelldesign/beedle/blob/master/LICENSE
+
 export default class Store {
   constructor(params) {
     const self = this;
