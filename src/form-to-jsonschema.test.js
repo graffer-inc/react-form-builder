@@ -1,5 +1,5 @@
 import Ajv from 'ajv';
-import { itemsToJsonSchema } from './form-to-jsonschema';
+import {itemsToJsonSchema} from './form-to-jsonschema';
 
 const ajv = new Ajv();
 
@@ -99,6 +99,58 @@ test('convert textArea to json schema', () => {
             $id: '#/properties/ED9706D5-DA70-4924-8C77-A5016340BE90',
             title: 'Placeholder Label',
             type: 'string',
+          },
+      },
+  };
+
+  const jsonSchema = itemsToJsonSchema(input);
+  expect(jsonSchema).toStrictEqual(expected);
+  expect(ajv.validateSchema(jsonSchema)).toBe(true);
+});
+
+test('convert dropdown to json schema', () => {
+  const input = [
+    {
+      id: '2745CAF2-F2B2-4B00-BA1F-FBD8F8C27808',
+      element: 'Dropdown',
+      text: 'Dropdown',
+      required: false,
+      canHaveAnswer: true,
+      field_name: 'dropdown_D9316A4D-DE8D-4CD7-B147-54A68BE6E410',
+      label: 'Placeholder Label',
+      options: [
+        {
+          value: 'place_holder_option_1',
+          text: 'Place holder option 1',
+          key: 'dropdown_option_1A3DB201-D21B-49BA-95D0-6E527929E577',
+        },
+        {
+          value: 'place_holder_option_2',
+          text: 'Place holder option 2',
+          key: 'dropdown_option_4975B50E-D7E3-4C09-83CE-EDB135AA7DFC',
+        },
+        {
+          value: 'place_holder_option_3',
+          text: 'Place holder option 3',
+          key: 'dropdown_option_28C3E7C7-5F6D-48AB-ABBE-DCAC4EBFDC3C',
+        },
+      ],
+    },
+  ];
+
+  const expected = {
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    $id: 'http://example.com/root.json',
+    type: 'object',
+    required: [],
+    properties:
+      {
+        '2745CAF2-F2B2-4B00-BA1F-FBD8F8C27808':
+          {
+            $id: '#/properties/2745CAF2-F2B2-4B00-BA1F-FBD8F8C27808',
+            title: 'Placeholder Label',
+            type: 'string',
+            enums: ['place_holder_option_1', 'place_holder_option_2', 'place_holder_option_3'],
           },
       },
   };
